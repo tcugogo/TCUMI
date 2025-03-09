@@ -12,7 +12,7 @@
         <StackPanel HorizontalAlignment="Center" Margin="0,30,0,20">
             <Grid Margin="0,0,0,10">
                 <Border Background="#f5f5f5" CornerRadius="10" Padding="20">
-                    <TextBlock Text="建立個案檔案"
+                    <TextBlock Text="建立個案檔123453545345345案"
                                FontSize="34"
                                Foreground="#FF0A869B"
                                HorizontalAlignment="Center"
