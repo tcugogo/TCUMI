@@ -1,0 +1,213 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows10.0.17763.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Views\page\**" />
+    <EmbeddedResource Remove="Views\page\**" />
+    <None Remove="Views\page\**" />
+    <Page Remove="Views\page\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Back_Button.png" />
+    <None Remove="Clear-removebg-preview.png" />
+    <None Remove="License.lic" />
+    <None Remove="MainBackGround.png" />
+    <None Remove="Picture\BackGround2.png" />
+    <None Remove="Picture\BackGround3.png" />
+    <None Remove="Picture\file.png" />
+    <None Remove="Picture\folder.png" />
+    <None Remove="Picture\專題背景.png" />
+    <None Remove="Picture\專題背景2.png" />
+    <None Remove="PublicKey.lic" />
+    <None Remove="TOPIC_BackGround.png" />
+    <None Remove="Views\等待.gif" />
+    <None Remove="專題背景.png" />
+    <None Remove="慈濟標誌.jpg" />
+    <None Remove="慈濟標誌.png" />
+    <None Remove="整合系統.png" />
+    <None Remove="照相機-removebg-preview.png" />
+    <None Remove="背景.png" />
+    <None Remove="背景2.png" />
+    <None Remove="還行背景.png" />
+    <None Remove="高畫質慈濟標誌.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="License.lic" />
+    <EmbeddedResource Include="PublicKey.lic" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Accord" Version="3.8.0" />
+    <PackageReference Include="Accord.Statistics" Version="3.8.0" />
+    <PackageReference Include="AForge.Imaging" Version="2.2.5" />
+    <PackageReference Include="AForge.Video" Version="2.2.5" />
+    <PackageReference Include="AForge.Video.DirectShow" Version="2.2.5" />
+    <PackageReference Include="CsvHelper" Version="33.0.1" />
+    <PackageReference Include="DelsysAPI" Version="2.5.3.832-Main" />
+    <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
+    <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
+    <PackageReference Include="MathNet.Filtering" Version="0.7.0" />
+    <PackageReference Include="MathNet.Numerics" Version="5.0.0" />
+    <PackageReference Include="MathNet.Numerics.FSharp" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications" Version="7.1.3" />
+    <PackageReference Include="ModernWPF" Version="1.4.6" />
+    <PackageReference Include="OxyPlot.Core" Version="2.2.0" />
+    <PackageReference Include="OxyPlot.Wpf" Version="2.2.0" />
+    <PackageReference Include="ScottPlot" Version="5.0.40" />
+    <PackageReference Include="ScottPlot.WinForms" Version="5.0.40" />
+    <PackageReference Include="SkiaSharp" Version="2.88.8" />
+    <PackageReference Include="SkiaSharp.Views.WPF" Version="2.88.8" />
+    <PackageReference Include="Tesseract" Version="5.2.0" />
+    <PackageReference Include="Tesseract.Data.English" Version="4.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Back_Button.png" />
+    <Resource Include="Clear-removebg-preview.png" />
+    <Resource Include="Picture\BackGround2.png" />
+    <Resource Include="Picture\BackGround3.png" />
+    <Resource Include="Picture\file.png" />
+    <Resource Include="Picture\folder.png" />
+    <Resource Include="Picture\專題背景.png" />
+    <Resource Include="TOPIC_BackGround.png" />
+    <Resource Include="照相機-removebg-preview.png" />
+    <Resource Include="背景.png" />
+    <Resource Include="背景2.png" />
+    <Resource Include="高畫質慈濟標誌.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+	<PropertyGroup>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+	</PropertyGroup>
+	<ItemGroup>
+	  <NativeLibs Remove="Views\Last_Window.xaml" />
+	</ItemGroup>
+	<ItemGroup>
+	  <NativeLibs Remove="Views\Last_Window.xaml.cs" />
+	</ItemGroup>
+	<ItemGroup>
+	  <NativeLibs Remove="Views\Shoot_Print.xaml" />
+	</ItemGroup>
+	<ItemGroup>
+	  <NativeLibs Remove="Views\Shoot_Print.xaml.cs" />
+	</ItemGroup>
+	<ItemGroup>
+	  <NativeLibs Remove="Models\CircularBuffer.cs" />
+	</ItemGroup>
+	<ItemGroup>
+	  <NativeLibs Remove="慈濟標誌.jpg" />
+	</ItemGroup>
+	<ItemGroup>
+	  <NativeLibs Remove="慈濟標誌.png" />
+	</ItemGroup>
+	<ItemGroup>
+	  <NativeLibs Remove="Views\等待.gif" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Resource Include="Views\等待.gif">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
+	</ItemGroup>
+	<ItemGroup>
+	  <NativeLibs Remove="Views\WaitingWindow.xaml" />
+	</ItemGroup>
+	<ItemGroup>
+	  <NativeLibs Remove="Views\WaitingWindow.xaml.cs" />
+	</ItemGroup>
+	<ItemGroup>
+	  <NativeLibs Remove="還行背景.png" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Resource Include="還行背景.png" />
+	</ItemGroup>
+	<ItemGroup>
+	  <NativeLibs Remove="Views\Average_Analysis.xaml" />
+	</ItemGroup>
+	<ItemGroup>
+	  <NativeLibs Remove="Views\Average_Analysis.xaml.cs" />
+	</ItemGroup>
+	<ItemGroup>
+	  <NativeLibs Remove="Views\Highest_Analysis.xaml" />
+	</ItemGroup>
+	<ItemGroup>
+	  <NativeLibs Remove="Views\Highest_Analysis.xaml.cs" />
+	</ItemGroup>
+	<ItemGroup>
+	  <NativeLibs Remove="整合系統.png" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Resource Include="整合系統.png" />
+	</ItemGroup>
+	<ItemGroup>
+	  <NativeLibs Remove="專題背景.png" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Resource Include="專題背景.png" />
+	</ItemGroup>
+	<ItemGroup>
+	  <NativeLibs Remove="Views\CustomMessageBox.xaml" />
+	</ItemGroup>
+	<ItemGroup>
+	  <NativeLibs Remove="Views\CustomMessageBox.xaml.cs" />
+	</ItemGroup>
+	<ItemGroup>
+	  <NativeLibs Remove="Views\AnalyzeFile_Control.xaml.cs" />
+	</ItemGroup>
+	<ItemGroup>
+	  <NativeLibs Remove="Views\LookFile_Control.xaml" />
+	</ItemGroup>
+	<ItemGroup>
+	  <NativeLibs Remove="Views\AnalyzeFile.xaml" />
+	</ItemGroup>
+	<ItemGroup>
+	  <NativeLibs Remove="Views\AnalyzeFile.xaml.cs" />
+	</ItemGroup>
+	<ItemGroup>
+	  <NativeLibs Remove="Views\Multiple_file_Selection_Analysis.xaml" />
+	</ItemGroup>
+	<ItemGroup>
+	  <NativeLibs Remove="Views\Multiple_file_Selection_Analysis.xaml.cs" />
+	</ItemGroup>
+	<ItemGroup>
+	  <NativeLibs Remove="Views\Single_file_Selection_Analysis_1.xaml" />
+	</ItemGroup>
+	<ItemGroup>
+	  <NativeLibs Remove="Views\Single_file_Selection_Analysis_1.xaml.cs" />
+	</ItemGroup>
+	<ItemGroup>
+	  <NativeLibs Remove="Views\Single_file_Selection_Analysis_2.xaml" />
+	</ItemGroup>
+	<ItemGroup>
+	  <NativeLibs Remove="Views\Single_file_Selection_Analysis_2.xaml.cs" />
+	</ItemGroup>
+	<ItemGroup>
+	  <NativeLibs Remove="Views\Last_Window2.xaml" />
+	</ItemGroup>
+	<ItemGroup>
+	  <NativeLibs Remove="Views\Last_Window2.xaml.cs" />
+	</ItemGroup>
+	
+</Project>

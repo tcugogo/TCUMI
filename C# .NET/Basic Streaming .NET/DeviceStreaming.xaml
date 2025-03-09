@@ -1,0 +1,231 @@
+﻿<UserControl x:Class="Basic_Streaming.NET.DeviceStreaming"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Basic_Streaming.NET">
+
+    <Grid>
+        <!-- Column setup: 20% for controls, 80% for SecondaryPanel -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="8*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Control panel on the left (20%) -->
+        <Grid x:Name="Streaming_Background" Grid.Column="0" Margin="10" Background="#706C61"
+                    Width="Auto" HorizontalAlignment="Stretch">
+            <Grid>
+
+                <Grid x:Name="Streaming_grid" Visibility="Visible">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="10*"/>
+                    </Grid.RowDefinitions>
+
+                    <Button Name="btn_PairSensors"
+                            Grid.Row="0"
+                            Content="配對感測器"
+                            Margin="5"
+                            FontSize="18"
+                            Background="#FF4E33"
+                            Foreground="#808080"
+                            FontWeight="DemiBold"
+                            IsEnabled="True" Click="clk_Pair"/>
+
+                    <Button Name="btn_ScanSensors"
+                            Grid.Row="1"
+                            Content="掃描配對的感測器"
+                            Margin="5"
+                            FontSize="18"
+                            Background="#FF4E33"
+                            Foreground="#808080"
+                            FontWeight="DemiBold"
+                            IsEnabled="False" Click="clk_Scan"/>
+                </Grid>
+
+                <Grid x:Name="Start_Grid" Visibility="Collapsed">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="0.7*"/>
+                        <RowDefinition Height="4.8*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="0.5*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock x:Name="currently_parameter_file" 
+                                    Grid.ColumnSpan="2" 
+                                    Text="" 
+                                    FontSize="16"
+                                    TextWrapping="Wrap" />
+                        <Button Name="btn_check_parameter"
+                                Click="clk_check_parameter"
+                                Grid.Column="2"
+                                Content="確認"
+                                Margin="5"
+                                FontSize="18" 
+                                Background="#FF5ABDE5"
+                                Foreground="#808080"
+                                FontWeight="DemiBold"
+                                IsEnabled="True" />
+                    </Grid>
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock 
+                            Grid.Column="0" 
+                            Text="目前參數:" 
+                            FontSize="16" />
+                        <TextBlock x:Name="define_parameter_file" 
+                            Grid.Column="1"
+                            Grid.ColumnSpan="2"
+                            Text="無" 
+                            FontSize="16"
+                            TextWrapping="Wrap"/>
+
+                    </Grid>
+
+                    <Button Name="btn_Start"
+                            Grid.Row="2"
+                            Content="開始測量"
+                            Margin="5"
+                            FontSize="18" 
+                            Background="#FF5ABDE5"
+                            Foreground="#808080"
+                            FontWeight="DemiBold"
+                            IsEnabled="False" Click="clk_Start"/>
+
+                    <Button Name="mark"
+                            Grid.Row="3"
+                            Content="打標記"
+                            Margin="5"
+                            FontSize="18"
+                            Background="#FFF0E04B"
+                            Foreground="#808080"
+                            FontWeight="DemiBold"
+                            Click="mark_Click"
+                            IsEnabled ="False"/>
+
+                    <Button Name="btn_ZoomIn"
+                            Grid.Row="4"
+                            Content="放大 Y 軸"
+                            Margin="5"
+                            FontSize="18"
+                            Background="#FFF0E04B"
+                            Foreground="#808080"
+                            FontWeight="DemiBold" Click="clk_ZoomIn"
+                            IsEnabled ="False"/>
+
+                    <Button Name="btn_ZoomOut"
+                            Grid.Row="5"
+                            Content="縮小 Y 軸"
+                            Margin="5"
+                            FontSize="18"
+                            Background="#FFF0E04B"
+                            Foreground="#808080"
+                            FontWeight="DemiBold" Click="clk_ZoomOut"
+                            IsEnabled ="False"/>
+
+                    <Button Name="btn_Stop"
+                            Grid.Row="6"
+                            Content="結束測量"
+                            Margin="5"
+                            FontSize="18" 
+                            Background="#FF5ABDE5"
+                            Foreground="#808080"
+                            FontWeight="DemiBold" 
+                            Click="clk_Stop" 
+                            IsEnabled="False"/>
+
+                    <TextBlock Grid.Row="7" Text="備註" FontSize="25" VerticalAlignment="Center" Foreground="#FF0B0B0B"/>
+
+                    <TextBox x:Name="Remark_Text" 
+                             Grid.Row="8" 
+                             FontSize="18" 
+                             TextWrapping="Wrap" 
+                             VerticalScrollBarVisibility="Auto"
+                             FontWeight="Bold"
+                             HorizontalAlignment="Stretch"
+                             VerticalAlignment="Stretch"
+                             Margin="5"/>
+
+                    <Grid Grid.Row="9">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Button Name="btn_Store_text"
+                                Click="clk_Store_text"
+                                Grid.Column="0"
+                                Content="儲存"
+                                Margin="5"
+                                FontSize="18"
+                                Background="#FF83A7D9"
+                                Foreground="#808080"
+                                FontWeight="DemiBold" 
+                                IsEnabled ="False"/>
+
+                        <!--<Button Name="btn_open_file"
+                                Click="clk_open_file"
+                                Grid.Column="1"
+                                Content="開檔"
+                                Margin="5"
+                                FontSize="18"
+                                Background="#FF136CE6"
+                                Foreground="#808080"
+                                FontWeight="DemiBold"
+                                IsEnabled ="False"/>-->
+
+                        <Button Name="btn_Analyze"
+                                Click="clk_Analyze"
+                                Grid.Column="1"
+                                Grid.RowSpan="2"
+                                Content="查看EMG"
+                                Margin="5"
+                                FontSize="18"
+                                Background="#FF83A7D9"
+                                Foreground="#808080"
+                                FontWeight="DemiBold" 
+                                IsEnabled ="False"/>
+                    </Grid>
+
+                    <TextBlock x:Name="csv_Path" 
+                               Grid.Row="10" 
+                               Text="" 
+                               FontSize="10"
+                               TextWrapping="Wrap"/>
+                </Grid>
+            </Grid>
+        </Grid>
+
+        <!-- Main content area (80%) -->
+        <Grid Grid.Column="1" Margin="10">
+            <Grid Name="SecondaryPanel"></Grid>
+            <UniformGrid x:Name="DynamicPanelContainer" Rows="{Binding NumberOfSensors}" Columns="1">
+                <!-- 動態添加的Panel將會放在這裏 -->
+            </UniformGrid>
+        </Grid>
+    </Grid>
+
+</UserControl>

@@ -1,0 +1,231 @@
+﻿<UserControl x:Class="Basic_Streaming_NET.Views.LookFile_Control"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Basic_Streaming_NET.Views"
+             xmlns:oxy="http://oxyplot.org/wpf"
+             mc:Ignorable="d" 
+             d:DesignHeight="720" d:DesignWidth="1350">
+    <UserControl.Resources>
+
+        <!-- 通用按鈕樣式 -->
+        <Style TargetType="Button" x:Key="StyledButton">
+            <Setter Property="FontFamily" Value="Arial" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Padding" Value="10,5" />
+            <Setter Property="Background" Value="#FFE9B663" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="BorderBrush" Value="#FFEB7258" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Border 
+                            Name="border"
+                            Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            CornerRadius="8">
+                                <Border.Effect>
+                                    <DropShadowEffect BlurRadius="5" ShadowDepth="2" Opacity="0.4" />
+                                </Border.Effect>
+                            </Border>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <!-- 滑鼠懸停 -->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="yellow" />
+                            </Trigger>
+                            <!-- 按下 -->
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#FFE9B663" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+        <!-- 定義資料夾的樣式，設置文字大小 -->
+        <HierarchicalDataTemplate DataType="{x:Type local:DirectoryItem}" ItemsSource="{Binding Children}">
+            <StackPanel Orientation="Horizontal">
+                <Image Width="16" Height="16" Source="/Picture/folder.png"/>
+                <TextBlock Text="{Binding Name}" Margin="5,0,0,0" FontSize="18"/>
+            </StackPanel>
+        </HierarchicalDataTemplate>
+
+        <!-- 定義檔案的樣式，設置文字大小 -->
+        <DataTemplate DataType="{x:Type local:FileItem}">
+            <StackPanel Orientation="Horizontal">
+                <Image Width="16" Height="16" Source="/Picture/file.png"/>
+                <TextBlock Text="{Binding Name}" Margin="5,0,0,0" FontSize="18"/>
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.93*"/>
+            <!-- 主內容區域 -->
+            <RowDefinition Height="0.07*"/>
+            <!-- 按鈕區域 -->
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.85*" />
+            <!-- 左側 TreeView，自適應寬度 -->
+            <ColumnDefinition Width="2*" />
+            <!-- 中間空間，自適應寬度 -->
+            <ColumnDefinition Width="0.9*" />
+            <!-- 右側 FileContentTextBox，自適應寬度 -->
+        </Grid.ColumnDefinitions>
+
+        <!-- 左側的 TreeView 顯示檔案結構，自適應高度和寬度 -->
+        <TreeView Name="FileTreeView" Grid.Column="0" Grid.Row="0" Margin="10,10,0,10"
+                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                  SelectedItemChanged="FileTreeView_SelectedItemChanged"/>
+
+        <!-- 中間空間，畫出emg -->
+        <Grid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <!-- 按鈕區域 -->
+                <RowDefinition Height="0.07*"/>
+                <!-- 主內容區域 -->
+                <RowDefinition Height="0.89*"/>
+                <RowDefinition Height="0.04*"/>
+            </Grid.RowDefinitions>
+            
+            <Grid Grid.Row="0">
+                <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                    <Button 
+                        Click="ZoomInY_Click"
+                        Style="{StaticResource StyledButton}"
+                        x:Name="btn_ZoomInY"
+                        Width="80"
+                        Content="Y放大"
+                        Visibility="Collapsed" />
+                    <Button 
+                        Click="ZoomOutY_Click"
+                        Style="{StaticResource StyledButton}"
+                        x:Name="btn_ZoomOutY"
+                        Width="80"
+                        Content="Y縮小"
+                        Visibility="Collapsed" />
+                    <Button 
+                        Click="ZoomInX_Click"
+                        Style="{StaticResource StyledButton}"
+                        x:Name="btn_ZoomInX"
+                        Width="80"
+                        Content="X放大"
+                        Visibility="Collapsed" />
+                    <Button 
+                        Click="ZoomOutX_Click"
+                        Style="{StaticResource StyledButton}"
+                        x:Name="btn_ZoomOutX"
+                        Width="80"
+                        Content="X縮小"
+                        Visibility="Collapsed" />
+                    <Button 
+                        Click="Update_mark"
+                        Style="{StaticResource StyledButton}"
+                        x:Name="btn_Update_mark"
+                        Width="80"
+                        Content="更新Mark"
+                        Visibility="Collapsed" />
+                    <Button 
+                        Click="Cancel_mark"
+                        Style="{StaticResource StyledButton}"
+                        x:Name="btn_Cancel_mark"
+                        Width="80"
+                        Content="取消Mark"
+                        Visibility="Hidden" />
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="1">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
+                    <ItemsControl x:Name="PlotsContainer">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <oxy:PlotView Model="{Binding}" Height="200" Margin="10" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Slider Name="XAxisSlider" 
+                    Minimum="0" 
+                        Visibility="Hidden"
+                    Maximum="{Binding MaxValue}" 
+                    SmallChange="0.1" 
+                    LargeChange="1"
+                    ValueChanged="XAxisSlider_ValueChanged" />
+
+            </Grid>
+
+        </Grid>
+
+        <!-- 右側的 TextBox 用於顯示選中檔案的內容，預設為隱藏，自適應高度和寬度 -->
+        <TextBox Name="FileContentTextBox" Grid.Column="2" Grid.Row="0" Margin="10" 
+                 TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" IsReadOnly="False" 
+                 FontSize="14" Visibility="Collapsed" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+
+
+        <Grid Grid.Column="0" Grid.Row="1" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.6*" />
+                <ColumnDefinition Width="0.3*" />
+            </Grid.ColumnDefinitions>
+         
+            <TextBlock x:Name="GetCsvPath_text"
+                Grid.Column="0"
+                Margin="10,0,0,0"
+                Text="" 
+                FontSize="12"
+                HorizontalAlignment="Left" VerticalAlignment="Top"
+                TextWrapping="Wrap"/>
+
+            <!-- 下方的 Button，用於在選中 .csv 檔案時獲取檔案路徑 -->
+            <Button Name="GetCsvPathButton" Grid.Column="1" Margin="0" 
+                    Content="Load Data" HorizontalAlignment="Right" VerticalAlignment="Top" 
+                    Visibility="Hidden" Click="GetCsvPathButton_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="FontSize" Value="16"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="Background" Value="#4CAF50"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="Padding" Value="10,5"/>
+                        <Setter Property="BorderBrush" Value="#388E3C"/>
+                        <Setter Property="BorderThickness" Value="2"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        <Setter Property="Width" Value="100"/>
+                        <Setter Property="Height" Value="40"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#45A049"/>
+                                <Setter Property="BorderBrush" Value="#2E7D32"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#388E3C"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </Grid>
+
+        
+
+    </Grid>
+
+    
+</UserControl>

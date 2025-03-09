@@ -1,0 +1,38 @@
+﻿<Window x:Class="Basic_Streaming_NET.Views.Window_Analyze_Signal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:oxy="http://oxyplot.org/wpf"
+        xmlns:local="clr-namespace:Basic_Streaming_NET.Views"
+        mc:Ignorable="d"
+        Title="Window_Analyze_Signal" Height="600" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Button Content="RMS 分析" Click="RMS_Click" Grid.Row="0"/>
+        <Button Content="只保留 Mark內訊號" Name="Name_Only_Save_Mark_Data" Click="Only_Save_Mark_Data_Click" Grid.Row="1"/>
+        <Button Content="X軸放大" Click="ZoomInX_Click" Grid.Row="2"/>
+        <Button Content="X軸縮小" Click="ZoomOutX_Click" Grid.Row="3"/>
+        <Button Content="Y軸放大" Click="ZoomInY_Click" Grid.Row="4"/>
+        <Button Content="Y軸縮小" Click="ZoomOutY_Click" Grid.Row="5"/>
+        <Button Content="復原圖" Name="Name_RestoreOriginal" Click="RestoreOriginal_Click" Grid.Row="6" IsEnabled="False"/>
+        <Button Content="計算面積並比較" Click="CalculateAndCompareArea_Click" Grid.Row="7"/>
+        <Button Content="長條圖" Click="bar_chart_Click" Grid.Row="8"/>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Grid.Row="9">
+            <StackPanel x:Name="PlotPanel">
+                <!-- PlotViews will be added here programmatically -->
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>

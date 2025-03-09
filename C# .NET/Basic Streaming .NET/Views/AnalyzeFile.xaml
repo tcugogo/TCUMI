@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="Basic_Streaming_NET.Views.AnalyzeFile"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Basic_Streaming_NET.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="1800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
+            <Button x:Name="BtnIntegrationBarChart" Content="EMG Activity(RMS)" FontSize="30" Width="310" Height="120" Margin="10" Click="BtnIntegrationBarChart_Click"/>
+            <Button x:Name="BtnPeakComparison" Content="RMS Peak" Width="310" FontSize="30" Height="120" Margin="10" Click="BtnPeakComparison_Click"/>
+            <Button x:Name="BtnNNMF" Width="310" Height="120" Margin="10" Click="BtnNNMF_Click">
+                <Button.Content>
+                    <TextBlock TextAlignment="Center" FontSize="20">
+                         Muscle Synergy analysis NNMF<LineBreak/>(協同動作分析)
+                    </TextBlock>
+                </Button.Content>
+            </Button>
+            <Button x:Name="BtnPCANHFD" Width="310" Height="120" Margin="10" Click="BtnPCANHFD_Click">
+                <Button.Content>
+                    <TextBlock TextAlignment="Center" FontSize="20">
+                        Muscle Complexity analysis HFD<LineBreak/>(動作複雜度)
+                    </TextBlock>
+                </Button.Content>
+            </Button>
+            
+        </StackPanel>
+
+        <Border Grid.Row="1" Margin="10" BorderThickness="1" BorderBrush="Gray" Visibility="Collapsed">
+            <ContentControl x:Name="AnalysisContent" />
+        </Border>
+    </Grid>
+</UserControl>

@@ -1,0 +1,8 @@
+﻿<UserControl x:Class="Basic_Streaming_NET.Views.selfControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Height="110" Width="700">
+    <Grid>
+        <Canvas x:Name="plotCanvas" Background="White"/>
+    </Grid>
+</UserControl>

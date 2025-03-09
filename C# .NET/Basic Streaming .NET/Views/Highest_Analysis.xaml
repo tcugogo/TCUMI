@@ -1,0 +1,42 @@
+﻿<Window x:Class="Basic_Streaming_NET.Views.Highest_Analysis"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Basic_Streaming_NET.Views"
+        mc:Ignorable="d"
+        xmlns:oxy="http://oxyplot.org/wpf"
+        Title="Highest_Analysis" Height="600" Width="1000">
+    <Grid>
+        <!-- 定義兩列，第一列寬度為1/4，第二列寬度為3/4 -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.2*" />
+            <!-- 佔1/4 -->
+            <ColumnDefinition Width="3*" />
+            <!-- 佔3/4 -->
+        </Grid.ColumnDefinitions>
+
+        <!-- 左邊內容，位於第一列 -->
+        <StackPanel Grid.Column="0" Background="LightGray">
+            <Grid>
+                <!-- 保留 "不同參數比較" 的 RadioButton，並置於中心 -->
+                <RadioButton Content="不同參數比較" HorizontalAlignment="Center" VerticalAlignment="Center"
+                 Margin="0,10,10,0" Checked="RadioButton_Checked"/>
+            </Grid>
+
+            <!-- TreeView 控件，初始為隱藏 -->
+            <TreeView Name="TreeView" Margin="10" Width="220" Height="400" Visibility="Collapsed"/>
+
+            <!-- Button 控件，初始為隱藏 -->
+            <Button Name="DiffParamsButton" Content="確認檔案2" Width="100" Height="30" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="10" Visibility="Collapsed" Click="ConfirmButton_Click_DiffParams"/>
+        </StackPanel>
+
+        <!-- 右邊內容，位於第二列 -->
+        <StackPanel Grid.Column="1" Background="White">
+            <TextBlock Text="右邊區域" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <!-- 用於顯示長條圖的 PlotView 控件 -->
+            <StackPanel x:Name="PlotContainer" Orientation="Vertical" />
+            <oxy:PlotView Name="BarChartView" Width="600" Height="400"/>
+        </StackPanel>
+    </Grid>
+</Window>

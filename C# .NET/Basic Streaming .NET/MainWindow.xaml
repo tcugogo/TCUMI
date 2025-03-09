@@ -1,0 +1,189 @@
+﻿<Window x:Class="Basic_Streaming.NET.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Basic_Streaming.NET"
+        mc:Ignorable="d"
+        Title="Basic Streaming"
+        Height="Auto"
+        Width="Auto"
+        MinWidth="800"
+        MinHeight="600"
+        WindowState="Maximized">
+
+    <Window.Resources>
+        <!-- 按鈕樣式 -->
+        <Style x:Key="StyledButton" TargetType="Button">
+            <Setter Property="Background" Value="#FF4CAF50" />
+            <!-- 設定按鈕的背景顏色為綠色 (#FF4CAF50) -->
+            <Setter Property="Foreground" Value="White" />
+            <!-- 設定按鈕文字的前景色為白色，以確保文字在綠色背景上清晰可見 -->
+            <Setter Property="FontSize" Value="24" />
+            <!-- 設定按鈕文字的字體大小為 16 像素，使文字較大，易於閱讀 -->
+            <Setter Property="FontWeight" Value="Bold" />
+            <!-- 設定按鈕文字為粗體，讓文字在按鈕上更加醒目 -->
+            <Setter Property="BorderThickness" Value="1" />
+            <!-- 設定按鈕的邊框厚度為 0，去除按鈕的預設邊框 -->
+            <Setter Property="Padding" Value="10,5" />
+            <!-- 設定按鈕內容的內邊距，水平為 10 像素，垂直為 5 像素，增加按鈕內容與邊框之間的距離，使其不顯得擁擠 -->
+            <Setter Property="Margin" Value="5" />
+            <!-- 設定按鈕外部的邊距為 5 像素，確保按鈕之間或與其他控件之間有足夠的間距 -->
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <!-- 設定按鈕的水平對齊方式為靠左對齊，讓按鈕與父容器的左側對齊 -->
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <!-- 設定按鈕的垂直對齊方式為置中對齊，讓按鈕在父容器的垂直方向上置中顯示 -->
+
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect ShadowDepth="3" Color="Gray" BlurRadius="5" />
+                </Setter.Value>
+            </Setter>
+            <!-- 為按鈕添加陰影效果，設定陰影深度為 3，顏色為灰色，模糊半徑為 5，讓按鈕更有立體感和視覺層次 -->
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="10"
+                                BorderThickness="1"
+                                BorderBrush="DarkGray">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <!-- 懸停效果 -->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF81C784" />
+                                <!-- 懸停時的背景色 -->
+                                <Setter Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect ShadowDepth="5" Color="#FF2E7D32" BlurRadius="8" />
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <!-- 按下效果 -->
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#FF388E3C" />
+                                <!-- 按下時的背景色 -->
+                                <Setter Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="0.95" ScaleY="0.95" />
+                                        <!-- 按下時稍微縮小 -->
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <DockPanel x:Name="mainDockPanel">
+        <DockPanel.Background>
+            <ImageBrush ImageSource="/Picture/BackGround2.png"/>
+        </DockPanel.Background>
+
+        <Grid DockPanel.Dock="Top" Background="#2c3e50">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.07*" />
+                <RowDefinition Height="0.93*" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- 左側按鈕佈局 -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0">
+                <!--Back_Button-->
+                <Button Name="btn_backToMainPageButton"
+                        Style="{StaticResource StyledButton}"
+                        Click="clk_BackButton"
+                        Content="回到首頁"
+                        Visibility="Hidden" />
+                <!--病患資料-->
+                <Button Name="btn_personal_data"
+                        Style="{StaticResource StyledButton}"
+                        Click="clk__personal_data"
+                        Content="個案資料"
+                        Visibility="Collapsed" />
+
+                <!--查看EMG-->
+                <Button Name="btn_look_AnalyzeFile"
+                        Style="{StaticResource StyledButton}"
+                        Click="clk_look_AnalyzeFile"
+                        Content="查看EMG"
+                        Visibility="Collapsed" />
+
+                <!--分析EMG-->
+                <Button Name="btn_AnalyzeFile"
+                        Style="{StaticResource StyledButton}"
+                        Click="clk_AnalyzeFile"
+                        Content="分析EMG"
+                        Visibility="Collapsed" />
+                <!--復健-->
+                <Button Name="btn_Rehabilitation"
+                        Style="{StaticResource StyledButton}"
+                        Click="clk_Rehabilitation"
+                        Content="復健"
+                        Visibility="Collapsed" />
+                <!--照相機-->
+                <Button Name="btn_Shooting"
+                        Style="{StaticResource StyledButton}"
+                        Click="clk_Shooting"
+                        Content="擷取參數"
+                        Visibility="Collapsed" />
+                
+            </StackPanel>
+
+            <ComboBox x:Name="folderComboBox_Action" Grid.Column="1" Width="120" Height="Auto" FontSize="20" 
+                      HorizontalAlignment="Left" VerticalContentAlignment="Center" 
+                      IsEditable="False" SelectionChanged="folderComboBox_Action_SelectionChanged"
+                      PreviewKeyUp="FolderComboBox_Action_PreviewKeyUp" Visibility="Collapsed">
+                <ComboBoxItem>走路</ComboBoxItem>
+                <ComboBoxItem>抬腳</ComboBoxItem>
+                <ComboBoxItem>抓握</ComboBoxItem>
+                <ComboBoxItem>其他</ComboBoxItem>
+            </ComboBox>
+
+            <!--開始最後設計-->
+            <Button Name="btn_DeviceStreaming_Last"
+                    Grid.Column="1"
+                    HorizontalAlignment="Right"
+                    VerticalContentAlignment="Center"
+                    Style="{StaticResource StyledButton}"
+                    Click="clk_DeviceStreaming_Last"
+                    Content="連接"
+                    Visibility="Collapsed" />
+        </Grid>
+
+        <Border Background="Transparent"
+                BorderBrush="#706C61"
+                BorderThickness="1"
+                ClipToBounds="True">
+
+            <Border Background="Transparent"
+                    BorderBrush="Black"
+                    BorderThickness="1"
+                    Margin="-2">
+
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="3"
+                                      BlurRadius="15" />
+                </Border.Effect>
+
+                <Grid Name="MainPanel" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+                    <Grid Name="User_SelectOptions_Grid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <!-- 按鈕註釋保留 -->
+                    </Grid>
+
+                </Grid>
+
+            </Border>
+
+        </Border>
+
+    </DockPanel>
+</Window>

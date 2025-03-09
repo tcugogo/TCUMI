@@ -1,0 +1,64 @@
+﻿<Window x:Class="Basic_Streaming_NET.Views.CustomMessageBox"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="新增成功" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        Width="320" Height="180" WindowStyle="None" AllowsTransparency="True" Background="Transparent">
+
+    <!-- 外層背景，設為半透明深灰色 -->
+    <Grid  Background="Transparent">
+        <!-- #CC 表示透明度，後面的 1E1E1E 是深灰色 -->
+
+        <!-- 視窗內容 -->
+        <Border CornerRadius="30,30,30,30" Padding="20" BorderBrush="Black" BorderThickness="3"  Opacity="0.98">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF009018" Offset="1"/>
+                    <GradientStop Color="#FF38C026" Offset="0.34"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            
+
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="個案資料建檔成功！" 
+                           x:Name="T"
+                           FontSize="25" 
+                           FontWeight="Bold" 
+                           Foreground="Black" 
+                           Margin="0, 0, 0, 20" 
+                           HorizontalAlignment="Center"/>
+
+                <!-- 確定按鈕 -->
+                <Button Content="確定" Width="120" Height="39" HorizontalAlignment="Center" Click="CloseButton_Click" 
+                        Background="#FF286D1D" Foreground="White" FontWeight="Bold" BorderThickness="0" 
+                        Cursor="Hand">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}" 
+                                                CornerRadius="5" 
+                                                Padding="5" 
+                                                BorderBrush="{TemplateBinding BorderBrush}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <!-- 按鈕懸停效果 -->
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="#1D3557"/>
+                                            </Trigger>
+                                            <!-- 按鈕按下效果 -->
+                                            <Trigger Property="IsPressed" Value="True">
+                                                <Setter Property="Background" Value="#1A2B48"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
